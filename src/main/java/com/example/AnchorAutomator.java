@@ -11,8 +11,13 @@ public class AnchorAutomator {
     private static final MinecraftClient mc = MinecraftClient.getInstance();
 
     public static void onBlockPlaced(BlockHitResult hitResult) {
-        // Виправлено умову: додано правильні логічні оператори "АБО" (||)
-        if (!AnchorModConfig.enabled  mc.world == null  mc.player == null) {
+        if (AnchorModConfig.enabled == false) {
+            return;
+        }
+        if (mc.world == null) {
+            return;
+        }
+        if (mc.player == null) {
             return;
         }
 
