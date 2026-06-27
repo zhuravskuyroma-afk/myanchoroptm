@@ -11,7 +11,10 @@ public class AnchorAutomator {
     private static final MinecraftClient mc = MinecraftClient.getInstance();
 
     public static void onBlockPlaced(BlockHitResult hitResult) {
-        if (!AnchorModConfig.enabled  mc.world == null  mc.player == null) return;
+        // Виправлено умову: додано правильні логічні оператори "АБО" (||)
+        if (!AnchorModConfig.enabled  mc.world == null  mc.player == null) {
+            return;
+        }
 
         if (mc.world.getBlockState(hitResult.getBlockPos()).getBlock() == Blocks.RESPAWN_ANCHOR) {
             new Thread(() -> {
